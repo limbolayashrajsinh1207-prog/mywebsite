@@ -1,149 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FarmFresh Auctions</title>
-    <!-- Tailwind CSS CDN for styling -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Crops Auction</title>
+    <!-- Use Tailwind CSS for a modern, responsive design -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8F8F1;
-            color: #2F4F4F;
+            background-color: #f7fafc;
         }
-        :root {
-            --color-sky-blue: 67 141 189;
-            --color-deep-green: 34 139 34;
-            --color-sun-yellow: 255 215 0;
-            --color-earth-brown: 101 67 33;
+        .page {
+            display: none;
         }
-        .auction-card {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-        .auction-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        .page.active {
+            display: block;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-lime-50 flex flex-col min-h-screen">
 
-    <header class="bg-white shadow-sm p-4 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold text-lime-600" data-page="home">
-                FarmFresh
-                <span class="text-sky-500">Auctions</span>
-            </a>
-            <nav class="hidden md:flex space-x-6 text-lg font-medium">
-                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300" data-page="home">Home</a>
-                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300" data-page="auctions">Auctions</a>
-                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300" data-page="how-it-works">How it Works</a>
-                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300" data-page="contact">Contact</a>
-            </nav>
-            <button class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </div>
+    <!-- Header and Navigation -->
+    <header class="bg-white shadow-lg py-4 px-6 fixed top-0 left-0 w-full z-10">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-emerald-700" onclick="showPage('home-page')">FarmBid</a>
+            <div class="space-x-4 flex-grow text-center">
+                <a href="#" class="text-gray-600 hover:text-amber-700 transition-colors duration-300" onclick="showPage('auctions-page')">Auctions</a>
+                <a href="#" class="text-gray-600 hover:text-amber-700 transition-colors duration-300" onclick="showPage('crops-page')">Crops</a>
+                <a href="#" class="text-gray-600 hover:text-amber-700 transition-colors duration-300" onclick="showPage('about-page')">About</a>
+                <a href="#" class="text-gray-600 hover:text-amber-700 transition-colors duration-300" onclick="showPage('contact-page')">Contact</a>
+                <a href="#" class="text-gray-600 hover:text-amber-700 transition-colors duration-300" onclick="showPage('rules-page')">Rules</a>
+            </div>
+            <div class="space-x-4">
+                <a href="#" class="text-emerald-700 hover:text-emerald-900 font-semibold" onclick="showPage('login-page')">Login</a>
+                <a href="#" class="bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors duration-300" onclick="showPage('register-page')">Register</a>
+            </div>
+        </nav>
     </header>
 
-    <main id="main-content" class="container mx-auto mt-8 p-4"></main>
+    <!-- Main Content Area -->
+    <main class="flex-grow mt-20 container mx-auto p-4 sm:p-8">
 
-    <footer class="bg-sky-500 text-white mt-16 py-8">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2024 FarmFresh Auctions. All rights reserved.</p>
-            <div class="flex justify-center space-x-4 mt-4 text-sm">
-                <a href="#" class="hover:underline">Privacy Policy</a>
-                <a href="#" class="hover:underline">Terms of Service</a>
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="bg-emerald-700 text-white rounded-xl shadow-lg p-8 sm:p-16 text-center">
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Your Marketplace for Fresh Crops</h1>
+                <p class="text-xl sm:text-2xl mb-6">Bid on the finest produce from local farms.</p>
+                <a href="#" class="bg-amber-400 text-emerald-800 font-bold py-3 px-8 rounded-full shadow-md hover:bg-amber-300 transition-colors duration-300" onclick="showPage('auctions-page')">Explore Auctions</a>
+            </div>
+
+            <section class="mt-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Featured Auctions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Featured Item 1 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/22c55e/ffffff?text=Organic+Corn" alt="Organic Corn" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Organic Corn</h3>
+                            <p class="text-gray-600 mb-4">Freshly harvested, non-GMO, and certified organic corn.</p>
+                            <div class="flex justify-between items-center text-gray-700 font-medium">
+                                <span>Current Bid: $150</span>
+                                <span>Ends: 1d 5h</span>
+                            </div>
+                            <button class="w-full mt-4 bg-emerald-700 text-white font-bold py-2 rounded-lg hover:bg-emerald-800 transition-colors duration-300" onclick="showPage('auction-details-page')">View Details</button>
+                        </div>
+                    </div>
+                    <!-- Featured Item 2 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/22c55e/ffffff?text=Heritage+Wheat" alt="Heritage Wheat" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Heritage Wheat</h3>
+                            <p class="text-gray-600 mb-4">Premium heritage wheat for baking and milling.</p>
+                            <div class="flex justify-between items-center text-gray-700 font-medium">
+                                <span>Current Bid: $210</span>
+                                <span>Ends: 3d 2h</span>
+                            </div>
+                            <button class="w-full mt-4 bg-emerald-700 text-white font-bold py-2 rounded-lg hover:bg-emerald-800 transition-colors duration-300" onclick="showPage('auction-details-page')">View Details</button>
+                        </div>
+                    </div>
+                    <!-- Featured Item 3 -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/22c55e/ffffff?text=Fresh+Potatoes" alt="Fresh Potatoes" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Fresh Potatoes</h3>
+                            <p class="text-gray-600 mb-4">A large lot of top-quality potatoes, perfect for any kitchen.</p>
+                            <div class="flex justify-between items-center text-gray-700 font-medium">
+                                <span>Current Bid: $120</span>
+                                <span>Ends: 2d 10h</span>
+                            </div>
+                            <button class="w-full mt-4 bg-emerald-700 text-white font-bold py-2 rounded-lg hover:bg-emerald-800 transition-colors duration-300" onclick="showPage('auction-details-page')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Auctions Page -->
+        <div id="auctions-page" class="page">
+            <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">All Auctions</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Auction Item 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/600x400/22c55e/ffffff?text=Organic+Tomatoes" alt="Organic Tomatoes" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Organic Tomatoes</h3>
+                    <p class="text-gray-600">Current Bid: <span class="font-bold text-emerald-700">$85</span></p>
+                    <p class="text-sm text-gray-500">Ends in: 1d 8h</p>
+                    <button class="w-full mt-4 bg-emerald-700 text-white font-bold py-2 rounded-lg hover:bg-emerald-800 transition-colors duration-300" onclick="showPage('auction-details-page')">Bid Now</button>
+                </div>
+                <!-- Auction Item 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/600x400/22c55e/ffffff?text=Fresh+Carrots" alt="Fresh Carrots" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Fresh Carrots</h3>
+                    <p class="text-gray-600">Current Bid: <span class="font-bold text-emerald-700">$70</span></p>
+                    <p class="text-sm text-gray-500">Ends in: 2d 15h</p>
+                    <button class="w-full mt-4 bg-emerald-700 text-white font-bold py-2 rounded-lg hover:bg-emerald-800 transition-colors duration-300" onclick="showPage('auction-details-page')">Bid Now</button>
+                </div>
+                <!-- Auction Item 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/600x400/22c55e/ffffff?text=Red+Grapes" alt="Red Grapes" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Red Grapes</h3>
+                    <p class="text-gray-600">Current Bid: <span class="font-bold text-emerald-700">$110</span></p>
+                    <p class="text-sm text-gray-500">Ends in: 4h 30m</p>
+                    <button class="w-full mt-4 bg-emerald-700 text-white font-bold py-2 rounded-lg hover:bg-emerald-800 transition-colors duration-300" onclick="showPage('auction-details-page')">Bid Now</button>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/600x400/22c55e/ffffff?text=Sweet+Onions" alt="Sweet Onions" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Sweet Onions</h3>
+                    <p class="text-gray-600">Current Bid: <span class="font-bold text-emerald-700">$65</span></p>
+                    <p class="text-sm text-gray-500">Ends in: 5d 1h</p>
+                    <button class="w-full mt-4 bg-emerald-700 text-white font-bold py-2 rounded-lg hover:bg-emerald-800 transition-colors duration-300" onclick="showPage('auction-details-page')">Bid Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auction Details Page (Simulated) -->
+        <div id="auction-details-page" class="page">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-6">Organic Corn</h1>
+                <div class="flex flex-col md:flex-row gap-8">
+                    <img src="https://placehold.co/800x600/22c55e/ffffff?text=Organic+Corn" alt="Organic Corn" class="w-full md:w-1/2 rounded-xl shadow-md object-cover">
+                    <div class="md:w-1/2">
+                        <p class="text-gray-600 text-lg mb-4">A large lot of freshly harvested organic corn, ready for your needs.</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
+                            <li><span class="font-semibold">Current Bid:</span> <span class="text-emerald-700 font-bold text-xl">$150.00</span></li>
+                            <li><span class="font-semibold">Listing Ends:</span> 1 day, 5 hours, 30 minutes</li>
+                            <li><span class="font-semibold">Origin:</span> Sunnydale Farms, USA</li>
+                            <li><span class="font-semibold">Quantity:</span> 500 lbs</li>
+                        </ul>
+                        <div class="bg-lime-50 p-6 rounded-lg shadow-inner">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">Place Your Bid</h3>
+                            <form>
+                                <label for="bid-amount" class="block text-gray-700 mb-2">Your Bid ($)</label>
+                                <input type="number" id="bid-amount" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 mb-4" placeholder="Enter your bid amount" required>
+                                <button type="submit" class="w-full bg-emerald-700 text-white font-bold py-3 rounded-lg hover:bg-emerald-800 transition-colors duration-300">Submit Bid</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Crops Page -->
+        <div id="crops-page" class="page">
+            <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Our Crops</h1>
+            <p class="text-gray-600 mb-8 text-center max-w-2xl mx-auto">Explore the wide variety of crops available for auction. We source only the best from trusted farmers.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Crop Card 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x300/22c55e/ffffff?text=Grains" alt="Grains" class="rounded-lg mb-4 mx-auto w-32 h-32 object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800">Grains</h3>
+                    <p class="text-sm text-gray-500">Wheat, Barley, Rice</p>
+                </div>
+                <!-- Crop Card 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x300/22c55e/ffffff?text=Vegetables" alt="Vegetables" class="rounded-lg mb-4 mx-auto w-32 h-32 object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800">Vegetables</h3>
+                    <p class="text-sm text-gray-500">Carrots, Potatoes, Onions</p>
+                </div>
+                <!-- Crop Card 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x300/22c55e/ffffff?text=Fruits" alt="Fruits" class="rounded-lg mb-4 mx-auto w-32 h-32 object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800">Fruits</h3>
+                    <p class="text-sm text-gray-500">Apples, Oranges, Grapes</p>
+                </div>
+                <!-- Crop Card 4 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x300/22c55e/ffffff?text=Legumes" alt="Legumes" class="rounded-lg mb-4 mx-auto w-32 h-32 object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800">Legumes</h3>
+                    <p class="text-sm text-gray-500">Beans, Lentils, Peas</p>
+                </div>
+                <!-- Crop Card 5 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x300/22c55e/ffffff?text=Nuts" alt="Nuts" class="rounded-lg mb-4 mx-auto w-32 h-32 object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800">Nuts</h3>
+                    <p class="text-sm text-gray-500">Almonds, Walnuts, Peanuts</p>
+                </div>
+                <!-- Crop Card 6 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x300/22c55e/ffffff?text=Tubers" alt="Tubers" class="rounded-lg mb-4 mx-auto w-32 h-32 object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800">Tubers</h3>
+                    <p class="text-sm text-gray-500">Potatoes, Yams, Cassava</p>
+                </div>
+                <!-- Crop Card 7 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x300/22c55e/ffffff?text=Herbs" alt="Herbs" class="rounded-lg mb-4 mx-auto w-32 h-32 object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800">Herbs</h3>
+                    <p class="text-sm text-gray-500">Basil, Mint, Oregano</p>
+                </div>
+                <!-- Crop Card 8 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/400x300/22c55e/ffffff?text=Spices" alt="Spices" class="rounded-lg mb-4 mx-auto w-32 h-32 object-cover">
+                    <h3 class="text-xl font-semibold text-gray-800">Spices</h3>
+                    <p class="text-sm text-gray-500">Saffron, Cinnamon, Pepper</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div id="login-page" class="page">
+            <div class="flex items-center justify-center min-h-[500px]">
+                <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Login</h2>
+                    <form>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="yourname@example.com" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="password" class="block text-gray-700 mb-2">Password</label>
+                            <input type="password" id="password" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="********" required>
+                        </div>
+                        <button type="submit" class="w-full bg-emerald-700 text-white font-bold py-3 rounded-lg hover:bg-emerald-800 transition-colors duration-300">Login</button>
+                    </form>
+                    <p class="text-center text-gray-600 mt-4">Don't have an account? <a href="#" class="text-emerald-700 hover:underline" onclick="showPage('register-page')">Register here</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Page -->
+        <div id="register-page" class="page">
+            <div class="flex items-center justify-center min-h-[500px]">
+                <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Register</h2>
+                    <form>
+                        <div class="mb-4">
+                            <label for="reg-name" class="block text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="reg-name" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="John Doe" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="reg-email" class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="reg-email" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="yourname@example.com" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="reg-password" class="block text-gray-700 mb-2">Password</label>
+                            <input type="password" id="reg-password" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="********" required>
+                        </div>
+                        <button type="submit" class="w-full bg-emerald-700 text-white font-bold py-3 rounded-lg hover:bg-emerald-800 transition-colors duration-300">Register</button>
+                    </form>
+                    <p class="text-center text-gray-600 mt-4">Already have an account? <a href="#" class="text-emerald-700 hover:underline" onclick="showPage('login-page')">Login here</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact-page" class="page">
+            <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Contact Us</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-3xl mx-auto">
+                <p class="text-gray-600 mb-6">Have a question or need support? Fill out the form below and we'll get back to you as soon as possible.</p>
+                <form>
+                    <div class="mb-4">
+                        <label for="contact-name" class="block text-gray-700 mb-2">Your Name</label>
+                        <input type="text" id="contact-name" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="contact-email" class="block text-gray-700 mb-2">Email Address</label>
+                        <input type="email" id="contact-email" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="contact-message" class="block text-gray-700 mb-2">Message</label>
+                        <textarea id="contact-message" rows="5" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-emerald-700 text-white font-bold py-3 rounded-lg hover:bg-emerald-800 transition-colors duration-300">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- About Us Page -->
+        <div id="about-page" class="page">
+            <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">About FarmBid</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+                <p class="text-gray-600 mb-4 leading-relaxed">
+                    FarmBid was founded with a simple mission: to connect local farmers directly with buyers, creating a transparent and efficient marketplace for agricultural products. We believe in supporting sustainable farming and providing a fair platform for both producers and consumers. Our auction model ensures that farmers get a competitive price for their hard work, and buyers get access to the freshest, highest-quality crops available.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    We are committed to building a community based on trust, quality, and mutual respect. From small-scale organic farms to large-scale producers, our platform is designed to serve the diverse needs of the agricultural industry.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bidding Rules Page -->
+        <div id="rules-page" class="page">
+            <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Bidding Rules & Guidelines</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+                <p class="text-gray-600 mb-4">
+                    To ensure a fair and transparent experience for all users, please review the following rules before participating in any auction.
+                </p>
+                <ol class="list-decimal list-inside text-gray-700 space-y-4">
+                    <li><span class="font-semibold">Registration:</span> All bidders must have a registered account and be logged in to place a bid.</li>
+                    <li><span class="font-semibold">Bidding Increments:</span> Bids must be placed in whole dollar increments. The minimum bid is $5.00 above the current bid.</li>
+                    <li><span class="font-semibold">Final Bid:</span> The highest bid at the end of the auction period is considered the winning bid. All sales are final.</li>
+                    <li><span class="font-semibold">Payment:</span> Payment must be made within 48 hours of the auction's end. Failure to pay may result in a ban from future auctions.</li>
+                    <li><span class="font-semibold">Disputes:</span> Any disputes regarding an auction must be submitted to our support team within 24 hours of the auction's close.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Page -->
+        <div id="privacy-page" class="page">
+            <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Privacy Policy</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Data Collection</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    We collect personal information that you voluntarily provide to us when you register on the website, place a bid, or contact us. This may include your name, email address, and payment information. We use this data to facilitate your use of the website and provide you with a better service.
+                </p>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Data Security</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    We implement a variety of security measures to maintain the safety of your personal information. Your data is stored on secure servers and protected by industry-standard encryption protocols.
+                </p>
+            </div>
+        </div>
+
+        <!-- FAQ Page -->
+        <div id="faq-page" class="page">
+            <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Frequently Asked Questions</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto space-y-6">
+                <!-- FAQ Item 1 -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">How do I place a bid?</h3>
+                    <p class="text-gray-600">
+                        First, you need to register and log in to your account. Navigate to the auction page of the crop you are interested in and enter your bid amount in the provided field.
+                    </p>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">What happens if I win an auction?</h3>
+                    <p class="text-gray-600">
+                        If you win, you will receive an email notification. You will then have 48 hours to complete the payment. After payment is confirmed, the seller will arrange for delivery or pickup of the crops.
+                    </p>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Is there a fee to use the site?</h3>
+                    <p class="text-gray-600">
+                        Registration and browsing are free. A small service fee is applied to the winning bid to cover the costs of running the platform.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-auto">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 FarmBid. All rights reserved.</p>
+            <div class="space-x-4 mt-2">
+                <a href="#" class="text-gray-400 hover:text-white" onclick="showPage('privacy-page')">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white" onclick="showPage('rules-page')">Terms of Use</a>
+                <a href="#" class="text-gray-400 hover:text-white" onclick="showPage('faq-page')">FAQ</a>
             </div>
         </div>
     </footer>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    const auctionItems = [
-        {
-            id: 'item-1',
-            name: 'Organic Heirloom Tomatoes',
-            description: 'A vibrant mix of sweet and savory heirloom tomatoes, perfect for salads and sauces. Hand-picked at peak ripeness.',
-            image: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=600&q=80',
-            sellerPhoto: 'https://randomuser.me/api/portraits/women/44.jpg',
-            currentBid: 55.75,
-            endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 2 + 1000 * 60 * 30,
-        },
-        {
-            id: 'item-2',
-            name: 'Fresh Honeycrisp Apples',
-            description: 'Crisp, sweet, and juicy Honeycrisp apples. A perfect snack or addition to your favorite baked goods.',
-            image: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af?auto=format&fit=crop&w=600&q=80',
-            sellerPhoto: 'https://randomuser.me/api/portraits/men/32.jpg',
-            currentBid: 32.50,
-            endDate: new Date().getTime() + 1000 * 60 * 60 * 12 + 1000 * 60 * 15,
-        },
-        {
-            id: 'item-3',
-            name: 'A-Grade Sweet Corn',
-            description: 'Sweet and tender corn on the cob, straight from the farm. A summer favorite, grilled or boiled.',
-            image: 'https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=600&q=80',
-            sellerPhoto: 'https://randomuser.me/api/portraits/women/65.jpg',
-            currentBid: 28.00,
-            endDate: new Date().getTime() + 1000 * 60 * 60 * 3 + 1000 * 60 * 5,
-        },
-        {
-            id: 'item-4',
-            name: 'Mixed Salad Greens',
-            description: 'A crunchy blend of fresh lettuces, arugula, and spinach. The foundation for a delicious, healthy salad.',
-            image: 'https://images.unsplash.com/photo-1543353071-087092ec393f?auto=format&fit=crop&w=600&q=80',
-            sellerPhoto: 'https://randomuser.me/api/portraits/men/50.jpg',
-            currentBid: 18.25,
-            endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 5,
-        },
-        {
-            id: 'item-5',
-            name: 'Seedless Watermelons',
-            description: 'Sweet, hydrating, and perfectly ripe seedless watermelons. Enjoy a taste of summer!',
-            image: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=600&q=80',
-            sellerPhoto: 'https://randomuser.me/api/portraits/women/20.jpg',
-            currentBid: 78.50,
-            endDate: new Date().getTime() + 1000 * 60 * 60 * 20,
-        },
-        {
-            id: 'item-6',
-            name: 'Juicy Navel Oranges',
-            description: 'Sun-ripened navel oranges, bursting with flavor. A great source of Vitamin C and a tasty treat.',
-            image: 'https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=600&q=80',
-            sellerPhoto: 'https://randomuser.me/api/portraits/men/12.jpg',
-            currentBid: 42.10,
-            endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 1,
-        },
-    ];
-
-    const mainContent = document.getElementById('main-content');
-    let timerInterval;
-
-    const formatTime = (ms) => {
-        if (ms < 0) return 'Auction ended';
-        const days = Math.floor(ms / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((ms % (1000 * 60)) / 1000);
-        return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    };
-
-    const renderAuctionCards = (items) => {
-        let html = '<h1 class="text-3xl font-bold mb-6 text-center text-lime-600">Current Auctions</h1>';
-        html += '<div class="grid grid-cols-1 md:grid-cols-3 gap-6">';
-        items.forEach(item => {
-            const timeLeft = item.endDate - new Date().getTime();
-            const formattedTime = formatTime(timeLeft);
-
-            html += `
-                <div class="auction-card bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
-                    <img src="${item.sellerPhoto}" alt="Seller photo" class="w-16 h-16 rounded-full border-2 border-lime-600 mb-3 object-cover" />
-                    <img src="${item.image}" alt="${item.name}" class="
-
-                  
+    <!-- JavaScript to handle page navigation -->
+    <script>
+        // Function to show the selected page and hide others
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0); // Scroll to the top of the page
+        }
+    </script>
+</body>
+</html>
