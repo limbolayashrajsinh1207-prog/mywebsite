@@ -1,10 +1,194 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My First Website</title>
-  </head>
-  <body>
-    <h1>Hello, World!</h1>
-    <p>This is my first paragraph on my website.</p>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmFresh Auctions</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font and scrollbar styling */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F8F1; /* A very light, off-white for a natural feel */
+            color: #2F4F4F; /* Dark slate gray for text */
+        }
+        /* Custom colors for Tailwind to use in the JIT compiler */
+        :root {
+            --color-sky-blue: 67 141 189;
+            --color-deep-green: 34 139 34;
+            --color-sun-yellow: 255 215 0;
+            --color-earth-brown: 101 67 33;
+        }
+        .auction-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .auction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-lime-600">
+                FarmFresh
+                <span class="text-sky-500">Auctions</span>
+            </a>
+            <nav class="hidden md:flex space-x-6 text-lg font-medium">
+                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300">Home</a>
+                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300">Auctions</a>
+                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300">How it Works</a>
+                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300">Contact</a>
+            </nav>
+            <button class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="container mx-auto mt-8 p-4">
+        <div class="bg-lime-600 text-white p-8 md:p-16 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                    Bid on the Freshest Harvest, <br class="hidden md:block"> Direct from the Farm.
+                </h1>
+                <p class="text-xl md:text-2xl mb-6 opacity-90">
+                    Discover and bid on high-quality, locally grown produce. 
+                </p>
+                <button class="bg-amber-400 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-amber-500 transition-transform duration-300 transform hover:scale-105">
+                    Start Bidding Now
+                </button>
+            </div>
+            <div class="md:w-1/2 mt-8 md:mt-0">
+                <!-- Decorative image or illustration could go here -->
+            </div>
+        </div>
+
+        <!-- Auction Listings Section -->
+        <section class="mt-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">Live Auctions</h2>
+            <div id="auction-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Auction cards will be dynamically inserted here by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-sky-500 text-white mt-16 py-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 FarmFresh Auctions. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4 text-sm">
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <a href="#" class="hover:underline">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const auctionItems = [
+                {
+                    id: 'item-1',
+                    name: 'Organic Heirloom Tomatoes',
+                    image: 'https://placehold.co/600x400/DC2626/FFFFFF?text=Tomatoes', // Red background for tomatoes
+                    currentBid: 55.75,
+                    endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 2 + 1000 * 60 * 30, // 2 days and 30 minutes
+                },
+                {
+                    id: 'item-2',
+                    name: 'Fresh Honeycrisp Apples',
+                    image: 'https://placehold.co/600x400/EF4444/FFFFFF?text=Apples', // Red background for apples
+                    currentBid: 32.50,
+                    endDate: new Date().getTime() + 1000 * 60 * 60 * 12 + 1000 * 60 * 15, // 12 hours and 15 minutes
+                },
+                {
+                    id: 'item-3',
+                    name: 'A-Grade Sweet Corn',
+                    image: 'https://placehold.co/600x400/FACC15/FFFFFF?text=Corn', // Yellow background for corn
+                    currentBid: 28.00,
+                    endDate: new Date().getTime() + 1000 * 60 * 60 * 3 + 1000 * 60 * 5, // 3 hours and 5 minutes
+                },
+                {
+                    id: 'item-4',
+                    name: 'Mixed Salad Greens',
+                    image: 'https://placehold.co/600x400/22C55E/FFFFFF?text=Greens', // Green background for salad greens
+                    currentBid: 18.25,
+                    endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 5, // 5 days
+                },
+                {
+                    id: 'item-5',
+                    name: 'Seedless Watermelons',
+                    image: 'https://placehold.co/600x400/B91C1C/FFFFFF?text=Watermelons', // Red background for watermelons
+                    currentBid: 78.50,
+                    endDate: new Date().getTime() + 1000 * 60 * 60 * 20, // 20 hours
+                },
+                {
+                    id: 'item-6',
+                    name: 'Juicy Navel Oranges',
+                    image: 'https://placehold.co/600x400/F97316/FFFFFF?text=Oranges', // Orange background for oranges
+                    currentBid: 42.10,
+                    endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 1, // 1 day
+                },
+            ];
+
+            const auctionGrid = document.getElementById('auction-grid');
+
+            // Function to format the time
+            const formatTime = (ms) => {
+                if (ms < 0) return 'Auction ended';
+                const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+
+                return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            };
+
+            // Function to render auction items
+            const renderAuctions = () => {
+                auctionGrid.innerHTML = ''; // Clear previous items
+                auctionItems.forEach(item => {
+                    const timeLeft = item.endDate - new Date().getTime();
+                    const formattedTime = formatTime(timeLeft);
+                    const card = document.createElement('div');
+                    card.classList.add('auction-card', 'bg-white', 'rounded-2xl', 'overflow-hidden', 'shadow-md', 'p-4', 'flex', 'flex-col', 'items-center', 'text-center');
+                    card.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="rounded-xl w-full h-48 object-cover mb-4">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">${item.name}</h3>
+                        <p class="text-lg text-gray-600 mb-2">Current Bid: <span class="font-bold text-lime-600">$${item.currentBid.toFixed(2)}</span></p>
+                        <p class="text-sm font-medium mb-4" data-timer="${item.id}">Time Left: ${formattedTime}</p>
+                        <button class="bg-sky-500 text-white font-medium py-2 px-6 rounded-full w-full hover:bg-sky-600 transition-colors duration-300">
+                            Place Bid
+                        </button>
+                    `;
+                    auctionGrid.appendChild(card);
+                });
+            };
+
+            // Update timers every second
+            setInterval(() => {
+                auctionItems.forEach(item => {
+                    const timeLeft = item.endDate - new Date().getTime();
+                    const timerElement = document.querySelector(`[data-timer="${item.id}"]`);
+                    if (timerElement) {
+                        timerElement.textContent = `Time Left: ${formatTime(timeLeft)}`;
+                    }
+                });
+            }, 1000);
+
+            // Initial render of auction items
+            renderAuctions();
+        });
+    </script>
+</body>
 </html>
+
