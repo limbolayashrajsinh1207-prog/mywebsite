@@ -35,15 +35,15 @@
     <!-- Header Section -->
     <header class="bg-white shadow-sm p-4 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold text-lime-600">
+            <a href="#" class="text-3xl font-bold text-lime-600" data-page="home">
                 FarmFresh
                 <span class="text-sky-500">Auctions</span>
             </a>
             <nav class="hidden md:flex space-x-6 text-lg font-medium">
-                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300">Home</a>
-                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300">Auctions</a>
-                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300">How it Works</a>
-                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300">Contact</a>
+                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300" data-page="home">Home</a>
+                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300" data-page="auctions">Auctions</a>
+                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300" data-page="how-it-works">How it Works</a>
+                <a href="#" class="text-gray-600 hover:text-lime-600 transition-colors duration-300" data-page="contact">Contact</a>
             </nav>
             <button class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-600">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,33 +53,8 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <main class="container mx-auto mt-8 p-4">
-        <div class="bg-lime-600 text-white p-8 md:p-16 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-1/2 text-center md:text-left">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
-                    Bid on the Freshest Harvest, <br class="hidden md:block"> Direct from the Farm.
-                </h1>
-                <p class="text-xl md:text-2xl mb-6 opacity-90">
-                    Discover and bid on high-quality, locally grown produce. 
-                </p>
-                <button class="bg-amber-400 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-amber-500 transition-transform duration-300 transform hover:scale-105">
-                    Start Bidding Now
-                </button>
-            </div>
-            <div class="md:w-1/2 mt-8 md:mt-0">
-                <!-- Decorative image or illustration could go here -->
-            </div>
-        </div>
-
-        <!-- Auction Listings Section -->
-        <section class="mt-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">Live Auctions</h2>
-            <div id="auction-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Auction cards will be dynamically inserted here by JavaScript -->
-            </div>
-        </section>
-    </main>
+    <!-- Main Content Container -->
+    <main id="main-content" class="container mx-auto mt-8 p-4"></main>
 
     <!-- Footer Section -->
     <footer class="bg-sky-500 text-white mt-16 py-8">
@@ -99,13 +74,15 @@
                 {
                     id: 'item-1',
                     name: 'Organic Heirloom Tomatoes',
-                    image: 'https://placehold.co/600x400/DC2626/FFFFFF?text=Tomatoes', // Red background for tomatoes
+                    description: 'A vibrant mix of sweet and savory heirloom tomatoes, perfect for salads and sauces. Hand-picked at peak ripeness.',
+                    image: 'https://placehold.co/600x400/DC2626/FFFFFF?text=Organic+Heirloom+Tomatoes',
                     currentBid: 55.75,
                     endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 2 + 1000 * 60 * 30, // 2 days and 30 minutes
                 },
                 {
                     id: 'item-2',
                     name: 'Fresh Honeycrisp Apples',
+                    description: 'Crisp, sweet, and juicy Honeycrisp apples. A perfect snack or addition to your favorite baked goods.',
                     image: 'https://placehold.co/600x400/EF4444/FFFFFF?text=Apples', // Red background for apples
                     currentBid: 32.50,
                     endDate: new Date().getTime() + 1000 * 60 * 60 * 12 + 1000 * 60 * 15, // 12 hours and 15 minutes
@@ -113,6 +90,7 @@
                 {
                     id: 'item-3',
                     name: 'A-Grade Sweet Corn',
+                    description: 'Sweet and tender corn on the cob, straight from the farm. A summer favorite, grilled or boiled.',
                     image: 'https://placehold.co/600x400/FACC15/FFFFFF?text=Corn', // Yellow background for corn
                     currentBid: 28.00,
                     endDate: new Date().getTime() + 1000 * 60 * 60 * 3 + 1000 * 60 * 5, // 3 hours and 5 minutes
@@ -120,6 +98,7 @@
                 {
                     id: 'item-4',
                     name: 'Mixed Salad Greens',
+                    description: 'A crunchy blend of fresh lettuces, arugula, and spinach. The foundation for a delicious, healthy salad.',
                     image: 'https://placehold.co/600x400/22C55E/FFFFFF?text=Greens', // Green background for salad greens
                     currentBid: 18.25,
                     endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 5, // 5 days
@@ -127,6 +106,7 @@
                 {
                     id: 'item-5',
                     name: 'Seedless Watermelons',
+                    description: 'Sweet, hydrating, and perfectly ripe seedless watermelons. Enjoy a taste of summer!',
                     image: 'https://placehold.co/600x400/B91C1C/FFFFFF?text=Watermelons', // Red background for watermelons
                     currentBid: 78.50,
                     endDate: new Date().getTime() + 1000 * 60 * 60 * 20, // 20 hours
@@ -134,13 +114,16 @@
                 {
                     id: 'item-6',
                     name: 'Juicy Navel Oranges',
+                    description: 'Sun-ripened navel oranges, bursting with flavor. A great source of Vitamin C and a tasty treat.',
                     image: 'https://placehold.co/600x400/F97316/FFFFFF?text=Oranges', // Orange background for oranges
                     currentBid: 42.10,
                     endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 1, // 1 day
                 },
             ];
 
-            const auctionGrid = document.getElementById('auction-grid');
+            const mainContent = document.getElementById('main-content');
+            const navLinks = document.querySelectorAll('a[data-page]');
+            let timerInterval;
 
             // Function to format the time
             const formatTime = (ms) => {
@@ -149,46 +132,243 @@
                 const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((ms % (1000 * 60)) / 1000);
-
                 return `${days}d ${hours}h ${minutes}m ${seconds}s`;
             };
 
-            // Function to render auction items
-            const renderAuctions = () => {
-                auctionGrid.innerHTML = ''; // Clear previous items
-                auctionItems.forEach(item => {
+            // Function to render auction cards
+            const renderAuctionCards = (items) => {
+                let html = '';
+                items.forEach(item => {
                     const timeLeft = item.endDate - new Date().getTime();
                     const formattedTime = formatTime(timeLeft);
-                    const card = document.createElement('div');
-                    card.classList.add('auction-card', 'bg-white', 'rounded-2xl', 'overflow-hidden', 'shadow-md', 'p-4', 'flex', 'flex-col', 'items-center', 'text-center');
-                    card.innerHTML = `
-                        <img src="${item.image}" alt="${item.name}" class="rounded-xl w-full h-48 object-cover mb-4">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">${item.name}</h3>
-                        <p class="text-lg text-gray-600 mb-2">Current Bid: <span class="font-bold text-lime-600">$${item.currentBid.toFixed(2)}</span></p>
-                        <p class="text-sm font-medium mb-4" data-timer="${item.id}">Time Left: ${formattedTime}</p>
-                        <button class="bg-sky-500 text-white font-medium py-2 px-6 rounded-full w-full hover:bg-sky-600 transition-colors duration-300">
-                            Place Bid
-                        </button>
+                    html += `
+                        <div class="auction-card bg-white rounded-2xl overflow-hidden shadow-md p-4 flex flex-col items-center text-center">
+                            <img src="${item.image}" alt="${item.name}" class="rounded-xl w-full h-48 object-cover mb-4">
+                            <h3 class="text-2xl font-semibold text-gray-900 mb-2">${item.name}</h3>
+                            <p class="text-lg text-gray-600 mb-2">Current Bid: <span class="font-bold text-lime-600">$${item.currentBid.toFixed(2)}</span></p>
+                            <p class="text-sm font-medium mb-4" data-timer="${item.id}">Time Left: ${formattedTime}</p>
+                            <a href="#" data-page="bid" data-item-id="${item.id}" class="bg-sky-500 text-white font-medium py-2 px-6 rounded-full w-full hover:bg-sky-600 transition-colors duration-300">
+                                Place Bid
+                            </a>
+                        </div>
                     `;
-                    auctionGrid.appendChild(card);
+                });
+                return html;
+            };
+
+            // Function to update timers
+            const startTimer = () => {
+                if (timerInterval) clearInterval(timerInterval);
+                timerInterval = setInterval(() => {
+                    auctionItems.forEach(item => {
+                        const timeLeft = item.endDate - new Date().getTime();
+                        const timerElement = document.querySelector(`[data-timer="${item.id}"]`);
+                        if (timerElement) {
+                            timerElement.textContent = `Time Left: ${formatTime(timeLeft)}`;
+                        }
+                    });
+                }, 1000);
+            };
+
+            // Page rendering functions
+            const renderHomePage = () => {
+                mainContent.innerHTML = `
+                    <div class="bg-lime-600 text-white p-8 md:p-16 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-between">
+                        <div class="md:w-1/2 text-center md:text-left">
+                            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                                Bid on the Freshest Harvest, <br class="hidden md:block"> Direct from the Farm.
+                            </h1>
+                            <p class="text-xl md:text-2xl mb-6 opacity-90">
+                                Discover and bid on high-quality, locally grown produce.
+                            </p>
+                            <a href="#" data-page="auctions" class="inline-block bg-amber-400 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-amber-500 transition-transform duration-300 transform hover:scale-105">
+                                Start Bidding Now
+                            </a>
+                        </div>
+                        <div class="md:w-1/2 mt-8 md:mt-0">
+                            <img src="https://placehold.co/600x400/808000/FFFFFF?text=Fresh+Produce+Harvest" alt="A variety of fresh, ripe vegetables and fruits" class="rounded-3xl shadow-lg w-full h-auto object-cover">
+                        </div>
+                    </div>
+                    <section class="mt-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">Live Auctions</h2>
+                        <div id="auction-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            ${renderAuctionCards(auctionItems)}
+                        </div>
+                    </section>
+                `;
+                addPageLinkEventListeners();
+                startTimer();
+            };
+
+            const renderAuctionsPage = () => {
+                mainContent.innerHTML = `
+                    <section class="mt-8">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-8">All Auctions</h1>
+                        <div id="auction-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            ${renderAuctionCards(auctionItems)}
+                        </div>
+                    </section>
+                `;
+                addPageLinkEventListeners();
+                startTimer();
+            };
+
+            const renderHowItWorksPage = () => {
+                mainContent.innerHTML = `
+                    <section class="mt-8">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-8">How it Works</h1>
+                        <div class="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+                            <ol class="space-y-6 text-lg text-gray-700">
+                                <li>
+                                    <h2 class="font-bold text-2xl text-lime-600 mb-2">1. Browse</h2>
+                                    <p>Look through our live auctions to find the freshest local produce. Each item has a detailed description and a live countdown timer.</p>
+                                </li>
+                                <li>
+                                    <h2 class="font-bold text-2xl text-lime-600 mb-2">2. Bid</h2>
+                                    <p>Place your bid on the items you want. The highest bid at the end of the auction wins the product!</p>
+                                </li>
+                                <li>
+                                    <h2 class="font-bold text-2xl text-lime-600 mb-2">3. Receive</h2>
+                                    <p>After winning, your farm-fresh products will be prepared for delivery or local pickup, so you can enjoy them at their peak freshness.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </section>
+                `;
+                if (timerInterval) clearInterval(timerInterval);
+            };
+            
+            const renderContactPage = () => {
+                mainContent.innerHTML = `
+                    <section class="mt-8">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-8">Contact Us</h1>
+                        <div class="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+                            <p class="text-lg text-gray-700 mb-4">Have questions about our auctions or products? Fill out the form below and we'll get back to you as soon as possible!</p>
+                            <form class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                    <input type="text" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                    <textarea id="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-lime-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-lime-700 transition-transform duration-300 transform hover:scale-105">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </section>
+                `;
+                if (timerInterval) clearInterval(timerInterval);
+            };
+
+            const renderBidPage = (itemId) => {
+                const item = auctionItems.find(i => i.id === itemId);
+                if (!item) {
+                    navigate('auctions'); // Redirect if item not found
+                    return;
+                }
+                if (timerInterval) clearInterval(timerInterval);
+                mainContent.innerHTML = `
+                    <section class="mt-8 max-w-4xl mx-auto">
+                        <div class="flex items-center space-x-2 text-sky-500 mb-4 cursor-pointer" data-page="auctions">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-lg">Back to Auctions</span>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-10 flex flex-col md:flex-row gap-8 items-start">
+                            <div class="flex-shrink-0 w-full md:w-1/2">
+                                <img src="${item.image}" alt="${item.name}" class="rounded-2xl w-full object-cover shadow-md h-auto">
+                            </div>
+                            <div class="w-full md:w-1/2">
+                                <h1 class="text-4xl font-bold mb-2">${item.name}</h1>
+                                <p class="text-gray-600 mb-4">${item.description}</p>
+                                <div class="text-xl text-gray-700 mb-6">
+                                    <p>Current Bid: <span class="font-bold text-lime-600">$<span id="current-bid">${item.currentBid.toFixed(2)}</span></span></p>
+                                    <p class="text-sm font-medium mt-1" data-timer="${item.id}">Time Left: ${formatTime(item.endDate - new Date().getTime())}</p>
+                                </div>
+                                <form id="bid-form" class="space-y-4">
+                                    <p id="bid-message" class="text-sm font-medium text-gray-500"></p>
+                                    <div>
+                                        <label for="new-bid" class="block text-sm font-medium text-gray-700">Your Bid ($)</label>
+                                        <input type="number" id="new-bid" name="new-bid" min="${item.currentBid + 0.01}" step="0.01" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500" required>
+                                    </div>
+                                    <button type="submit" class="w-full bg-lime-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-lime-700 transition-colors duration-300">
+                                        Submit Bid
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                `;
+                
+                // Add event listeners for the new page content
+                addPageLinkEventListeners();
+                startTimer();
+
+                const bidForm = document.getElementById('bid-form');
+                const newBidInput = document.getElementById('new-bid');
+                const bidMessage = document.getElementById('bid-message');
+                
+                bidForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const newBid = parseFloat(newBidInput.value);
+                    if (isNaN(newBid) || newBid <= item.currentBid) {
+                        bidMessage.textContent = 'Please enter a bid higher than the current bid.';
+                        bidMessage.className = 'text-sm font-medium text-red-500';
+                    } else {
+                        bidMessage.textContent = `Your bid of $${newBid.toFixed(2)} has been submitted!`;
+                        bidMessage.className = 'text-sm font-medium text-green-500';
+                        // Here you would send the bid to a server.
+                        item.currentBid = newBid;
+                        document.getElementById('current-bid').textContent = newBid.toFixed(2);
+                    }
                 });
             };
 
-            // Update timers every second
-            setInterval(() => {
-                auctionItems.forEach(item => {
-                    const timeLeft = item.endDate - new Date().getTime();
-                    const timerElement = document.querySelector(`[data-timer="${item.id}"]`);
-                    if (timerElement) {
-                        timerElement.textContent = `Time Left: ${formatTime(timeLeft)}`;
-                    }
+            // Main navigation handler
+            const navigate = (page, itemId = null) => {
+                switch (page) {
+                    case 'auctions':
+                        renderAuctionsPage();
+                        break;
+                    case 'how-it-works':
+                        renderHowItWorksPage();
+                        break;
+                    case 'contact':
+                        renderContactPage();
+                        break;
+                    case 'bid':
+                        renderBidPage(itemId);
+                        break;
+                    case 'home':
+                    default:
+                        renderHomePage();
+                }
+            };
+            
+            // Function to add event listeners to dynamically created links
+            const addPageLinkEventListeners = () => {
+                document.querySelectorAll('a[data-page]').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        const page = event.currentTarget.dataset.page;
+                        const itemId = event.currentTarget.dataset.itemId;
+                        navigate(page, itemId);
+                    });
                 });
-            }, 1000);
+            };
 
-            // Initial render of auction items
-            renderAuctions();
+            // Initial render
+            navigate('home');
         });
     </script>
 </body>
 </html>
-
