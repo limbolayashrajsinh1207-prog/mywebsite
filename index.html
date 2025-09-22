@@ -7,14 +7,12 @@
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom font and scrollbar styling */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8F8F1; /* A very light, off-white for a natural feel */
-            color: #2F4F4F; /* Dark slate gray for text */
+            background-color: #F8F8F1;
+            color: #2F4F4F;
         }
-        /* Custom colors for Tailwind to use in the JIT compiler */
         :root {
             --color-sky-blue: 67 141 189;
             --color-deep-green: 34 139 34;
@@ -32,7 +30,6 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Header Section -->
     <header class="bg-white shadow-sm p-4 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <a href="#" class="text-3xl font-bold text-lime-600" data-page="home">
@@ -53,10 +50,8 @@
         </div>
     </header>
 
-    <!-- Main Content Container -->
     <main id="main-content" class="container mx-auto mt-8 p-4"></main>
 
-    <!-- Footer Section -->
     <footer class="bg-sky-500 text-white mt-16 py-8">
         <div class="container mx-auto text-center">
             <p>&copy; 2024 FarmFresh Auctions. All rights reserved.</p>
@@ -67,85 +62,88 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
-            const auctionItems = [
-                {
-                    id: 'item-1',
-                    name: 'Organic Heirloom Tomatoes',
-                    description: 'A vibrant mix of sweet and savory heirloom tomatoes, perfect for salads and sauces. Hand-picked at peak ripeness.',
-                    image: 'https://placehold.co/600x400/DC2626/FFFFFF?text=Organic+Heirloom+Tomatoes',
-                    sellerPhoto: 'https://randomuser.me/api/portraits/women/44.jpg',
-                    currentBid: 55.75,
-                    endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 2 + 1000 * 60 * 30, // 2 days and 30 minutes
-                },
-                {
-                    id: 'item-2',
-                    name: 'Fresh Honeycrisp Apples',
-                    description: 'Crisp, sweet, and juicy Honeycrisp apples. A perfect snack or addition to your favorite baked goods.',
-                    image: 'https://placehold.co/600x400/EF4444/FFFFFF?text=Apples', // Red background for apples
-                    sellerPhoto: 'https://randomuser.me/api/portraits/men/32.jpg',
-                    currentBid: 32.50,
-                    endDate: new Date().getTime() + 1000 * 60 * 60 * 12 + 1000 * 60 * 15, // 12 hours and 15 minutes
-                },
-                {
-                    id: 'item-3',
-                    name: 'A-Grade Sweet Corn',
-                    description: 'Sweet and tender corn on the cob, straight from the farm. A summer favorite, grilled or boiled.',
-                    image: 'https://placehold.co/600x400/FACC15/FFFFFF?text=Corn', // Yellow background for corn
-                    sellerPhoto: 'https://randomuser.me/api/portraits/women/65.jpg',
-                    currentBid: 28.00,
-                    endDate: new Date().getTime() + 1000 * 60 * 60 * 3 + 1000 * 60 * 5, // 3 hours and 5 minutes
-                },
-                {
-                    id: 'item-4',
-                    name: 'Mixed Salad Greens',
-                    description: 'A crunchy blend of fresh lettuces, arugula, and spinach. The foundation for a delicious, healthy salad.',
-                    image: 'https://placehold.co/600x400/22C55E/FFFFFF?text=Greens', // Green background for salad greens
-                    sellerPhoto: 'https://randomuser.me/api/portraits/men/50.jpg',
-                    currentBid: 18.25,
-                    endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 5, // 5 days
-                },
-                {
-                    id: 'item-5',
-                    name: 'Seedless Watermelons',
-                    description: 'Sweet, hydrating, and perfectly ripe seedless watermelons. Enjoy a taste of summer!',
-                    image: 'https://placehold.co/600x400/B91C1C/FFFFFF?text=Watermelons', // Red background for watermelons
-                    sellerPhoto: 'https://randomuser.me/api/portraits/women/20.jpg',
-                    currentBid: 78.50,
-                    endDate: new Date().getTime() + 1000 * 60 * 60 * 20, // 20 hours
-                },
-                {
-                    id: 'item-6',
-                    name: 'Juicy Navel Oranges',
-                    description: 'Sun-ripened navel oranges, bursting with flavor. A great source of Vitamin C and a tasty treat.',
-                    image: 'https://placehold.co/600x400/F97316/FFFFFF?text=Oranges', // Orange background for oranges
-                    sellerPhoto: 'https://randomuser.me/api/portraits/men/12.jpg',
-                    currentBid: 42.10,
-                    endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 1, // 1 day
-                },
-            ];
+    const auctionItems = [
+        {
+            id: 'item-1',
+            name: 'Organic Heirloom Tomatoes',
+            description: 'A vibrant mix of sweet and savory heirloom tomatoes, perfect for salads and sauces. Hand-picked at peak ripeness.',
+            image: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=600&q=80',
+            sellerPhoto: 'https://randomuser.me/api/portraits/women/44.jpg',
+            currentBid: 55.75,
+            endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 2 + 1000 * 60 * 30,
+        },
+        {
+            id: 'item-2',
+            name: 'Fresh Honeycrisp Apples',
+            description: 'Crisp, sweet, and juicy Honeycrisp apples. A perfect snack or addition to your favorite baked goods.',
+            image: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af?auto=format&fit=crop&w=600&q=80',
+            sellerPhoto: 'https://randomuser.me/api/portraits/men/32.jpg',
+            currentBid: 32.50,
+            endDate: new Date().getTime() + 1000 * 60 * 60 * 12 + 1000 * 60 * 15,
+        },
+        {
+            id: 'item-3',
+            name: 'A-Grade Sweet Corn',
+            description: 'Sweet and tender corn on the cob, straight from the farm. A summer favorite, grilled or boiled.',
+            image: 'https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=600&q=80',
+            sellerPhoto: 'https://randomuser.me/api/portraits/women/65.jpg',
+            currentBid: 28.00,
+            endDate: new Date().getTime() + 1000 * 60 * 60 * 3 + 1000 * 60 * 5,
+        },
+        {
+            id: 'item-4',
+            name: 'Mixed Salad Greens',
+            description: 'A crunchy blend of fresh lettuces, arugula, and spinach. The foundation for a delicious, healthy salad.',
+            image: 'https://images.unsplash.com/photo-1543353071-087092ec393f?auto=format&fit=crop&w=600&q=80',
+            sellerPhoto: 'https://randomuser.me/api/portraits/men/50.jpg',
+            currentBid: 18.25,
+            endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 5,
+        },
+        {
+            id: 'item-5',
+            name: 'Seedless Watermelons',
+            description: 'Sweet, hydrating, and perfectly ripe seedless watermelons. Enjoy a taste of summer!',
+            image: 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=600&q=80',
+            sellerPhoto: 'https://randomuser.me/api/portraits/women/20.jpg',
+            currentBid: 78.50,
+            endDate: new Date().getTime() + 1000 * 60 * 60 * 20,
+        },
+        {
+            id: 'item-6',
+            name: 'Juicy Navel Oranges',
+            description: 'Sun-ripened navel oranges, bursting with flavor. A great source of Vitamin C and a tasty treat.',
+            image: 'https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=600&q=80',
+            sellerPhoto: 'https://randomuser.me/api/portraits/men/12.jpg',
+            currentBid: 42.10,
+            endDate: new Date().getTime() + 1000 * 60 * 60 * 24 * 1,
+        },
+    ];
 
-            const mainContent = document.getElementById('main-content');
-            const navLinks = document.querySelectorAll('a[data-page]');
-            let timerInterval;
+    const mainContent = document.getElementById('main-content');
+    let timerInterval;
 
-            // Function to format the time
-            const formatTime = (ms) => {
-                if (ms < 0) return 'Auction ended';
-                const days = Math.floor(ms / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((ms % (1000 * 60)) / 1000);
-                return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            };
+    const formatTime = (ms) => {
+        if (ms < 0) return 'Auction ended';
+        const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+        return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
 
-            // Function to render auction cards
-            const renderAuctionCards = (items) => {
-                let html = '';
-                items.forEach(item => {
-                    const timeLeft = item.endDate - new Date().getTime();
-                    const formattedTime = formatTime(timeLeft);
-                    html += `
-                        <div class
+    const renderAuctionCards = (items) => {
+        let html = '<h1 class="text-3xl font-bold mb-6 text-center text-lime-600">Current Auctions</h1>';
+        html += '<div class="grid grid-cols-1 md:grid-cols-3 gap-6">';
+        items.forEach(item => {
+            const timeLeft = item.endDate - new Date().getTime();
+            const formattedTime = formatTime(timeLeft);
+
+            html += `
+                <div class="auction-card bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+                    <img src="${item.sellerPhoto}" alt="Seller photo" class="w-16 h-16 rounded-full border-2 border-lime-600 mb-3 object-cover" />
+                    <img src="${item.image}" alt="${item.name}" class="
+
+                  
